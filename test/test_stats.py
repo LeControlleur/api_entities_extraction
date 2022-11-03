@@ -75,7 +75,7 @@ class StatsTestCase(unittest.TestCase):
 
         for i in stats_tables:
             if i != "age":
-                assert new_value[i] == old_value[i] + 1
+                assert new_value[i] != old_value[i]
             else:
                 assert new_value[i] != old_value[i]
 

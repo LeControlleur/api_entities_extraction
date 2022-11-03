@@ -65,7 +65,6 @@ def stats_recording(dataToRecord : dict):
     """
     conn = sqlite3.connect(STATS_DB_PATH)
     c = conn.cursor()
-    print(dataToRecord)
     #   Creation of each table based on the stats_tables list
     for i, j in stats_tables.items():
         try :
@@ -85,11 +84,10 @@ def stats_recording(dataToRecord : dict):
                 req = " INSERT INTO {0} (value, occurence)".format(i)
                 req += """ VALUES ( "{0}", {1} ) """.format(dataToRecord[j], nbre_occ) if i != "age" else """ VALUES ( {0}, {1} ) """.format(dataToRecord[j], nbre_occ)
 
-            print(req)
             c.execute(req)
 
-        except KeyError:
-            print("Error")
+        except KeyError as e:
+            print(e)
             continue
 
     conn.commit()
